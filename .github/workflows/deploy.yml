@@ -28,50 +28,97 @@ jobs:
         working-directory: frontend
         run: npm ci && npm run build
 
-  deploy:
+  docker:
     needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to GitHub Container Registry (ghcr.io)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build & push backend Docker image to GHCR
+        run: |
+          OWNER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker build -t "ghcr.io/${OWNER}/backend:${{ github.sha }}" -t "ghcr.io/${OWNER}/backend:latest" ./backend
+          docker push "ghcr.io/${OWNER}/backend:${{ github.sha }}"
+          docker push "ghcr.io/${OWNER}/backend:latest"
+      - name: Build & push frontend Docker image to GHCR
+        run: |
+          OWNER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker build --build-arg VITE_API_URL=http://localhost:8000 -t "ghcr.io/${OWNER}/frontend:${{ github.sha }}" -t "ghcr.io/${OWNER}/frontend:latest" ./frontend
+          docker push "ghcr.io/${OWNER}/frontend:${{ github.sha }}"
+          docker push "ghcr.io/${OWNER}/frontend:latest"
+
+  deploy:
+    needs: docker
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
     steps:
       - uses: actions/checkout@v4
+      - name: Check if GCP secrets are configured
+        id: check
+        env:
+          WIF_PROVIDER: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          GCP_SA: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+        run: |
+          if [[ -n "$WIF_PROVIDER" && -n "$GCP_SA" ]]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping GCP Cloud Run deployment: add GCP_WORKLOAD_IDENTITY_PROVIDER and GCP_SERVICE_ACCOUNT secrets (with GCP billing enabled) to activate Cloud Run deploy."
+          fi
       - id: auth
+        if: steps.check.outputs.configured == 'true'
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - uses: google-github-actions/setup-gcloud@v2
+      - if: steps.check.outputs.configured == 'true'
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ steps.auth.outputs.project_id }}
       - name: Configure Docker for Artifact Registry
+        if: steps.check.outputs.configured == 'true'
         run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
       - name: Ensure Artifact Registry repository exists
+        if: steps.check.outputs.configured == 'true'
         run: |
           gcloud artifacts repositories describe ${{ env.ARTIFACT_REPO }} \
             --location=${{ env.REGION }} --project=${{ steps.auth.outputs.project_id }} || \
           gcloud artifacts repositories create ${{ env.ARTIFACT_REPO }} \
             --repository-format=docker --location=${{ env.REGION }} \
             --project=${{ steps.auth.outputs.project_id }}
-      - name: Build and push backend image
+      - name: Build and push backend image to GCP
+        if: steps.check.outputs.configured == 'true'
         run: |
           IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
           docker build -t "$IMAGE" ./backend
           docker push "$IMAGE"
       - name: Deploy backend to Cloud Run
         id: deploy-backend
+        if: steps.check.outputs.configured == 'true'
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: northgate-backend
           region: ${{ env.REGION }}
           image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
           flags: '--allow-unauthenticated --port=8080'
-      - name: Build and push frontend image
+      - name: Build and push frontend image to GCP
+        if: steps.check.outputs.configured == 'true'
         run: |
           IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
           docker build --build-arg VITE_API_URL=${{ steps.deploy-backend.outputs.url }} -t "$IMAGE" ./frontend
           docker push "$IMAGE"
       - name: Deploy frontend to Cloud Run
+        if: steps.check.outputs.configured == 'true'
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: northgate-frontend
