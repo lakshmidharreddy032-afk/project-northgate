@@ -4,9 +4,10 @@ WORKDIR /app
 ARG VITE_API_URL=http://localhost:8000
 ENV VITE_API_URL=$VITE_API_URL
 
-COPY package.json tsconfig.json vite.config.ts tailwind.config.js postcss.config.js index.html ./
-RUN npm install
+COPY package.json package-lock.json tsconfig.json tsconfig.app.json tsconfig.node.json vite.config.ts tailwind.config.js postcss.config.js index.html ./
+RUN npm ci
 
+COPY public ./public
 COPY src ./src
 RUN npm run build
 
