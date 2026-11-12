@@ -55,65 +55,99 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - name: Check if GCP secrets are configured
+      - name: Check GCP auth mode
         id: check
         env:
+          SA_JSON: ${{ secrets.GCP_CREDENTIALS_JSON }}
           WIF_PROVIDER: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           GCP_SA: ${{ secrets.GCP_SERVICE_ACCOUNT }}
         run: |
-          if [[ -n "$WIF_PROVIDER" && -n "$GCP_SA" ]]; then
-            echo "configured=true" >> "$GITHUB_OUTPUT"
+          if [[ -n "$SA_JSON" ]]; then
+            echo "mode=json" >> "$GITHUB_OUTPUT"
+          elif [[ -n "$WIF_PROVIDER" && -n "$GCP_SA" ]]; then
+            echo "mode=wif" >> "$GITHUB_OUTPUT"
           else
-            echo "configured=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Skipping GCP Cloud Run deployment: add GCP_WORKLOAD_IDENTITY_PROVIDER and GCP_SERVICE_ACCOUNT secrets (with GCP billing enabled) to activate Cloud Run deploy."
+            echo "mode=none" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping GCP deploy: add GCP_CREDENTIALS_JSON or (GCP_WORKLOAD_IDENTITY_PROVIDER + GCP_SERVICE_ACCOUNT)."
           fi
-      - id: auth
-        if: steps.check.outputs.configured == 'true'
+
+      - id: auth-json
+        if: steps.check.outputs.mode == 'json'
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
+
+      - id: auth-wif
+        if: steps.check.outputs.mode == 'wif'
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - if: steps.check.outputs.configured == 'true'
+
+      - name: Resolve active GCP Project ID
+        id: gcp
+        if: steps.check.outputs.mode != 'none'
+        run: |
+          PROJECT_ID="${{ steps.auth-json.outputs.project_id || steps.auth-wif.outputs.project_id }}"
+          echo "project_id=${PROJECT_ID}" >> "$GITHUB_OUTPUT"
+
+      - if: steps.check.outputs.mode != 'none'
         uses: google-github-actions/setup-gcloud@v2
         with:
-          project_id: ${{ steps.auth.outputs.project_id }}
+          project_id: ${{ steps.gcp.outputs.project_id }}
+
       - name: Configure Docker for Artifact Registry
-        if: steps.check.outputs.configured == 'true'
+        if: steps.check.outputs.mode != 'none'
         run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
       - name: Ensure Artifact Registry repository exists
-        if: steps.check.outputs.configured == 'true'
+        if: steps.check.outputs.mode != 'none'
         run: |
           gcloud artifacts repositories describe ${{ env.ARTIFACT_REPO }} \
-            --location=${{ env.REGION }} --project=${{ steps.auth.outputs.project_id }} || \
+            --location=${{ env.REGION }} --project=${{ steps.gcp.outputs.project_id }} || \
           gcloud artifacts repositories create ${{ env.ARTIFACT_REPO }} \
             --repository-format=docker --location=${{ env.REGION }} \
-            --project=${{ steps.auth.outputs.project_id }}
+            --project=${{ steps.gcp.outputs.project_id }}
+
       - name: Build and push backend image to GCP
-        if: steps.check.outputs.configured == 'true'
+        if: steps.check.outputs.mode != 'none'
         run: |
-          IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
+          IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.gcp.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
           docker build -t "$IMAGE" ./backend
           docker push "$IMAGE"
+
       - name: Deploy backend to Cloud Run
         id: deploy-backend
-        if: steps.check.outputs.configured == 'true'
+        if: steps.check.outputs.mode != 'none'
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: northgate-backend
           region: ${{ env.REGION }}
-          image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
-          flags: '--allow-unauthenticated --port=8080'
+          image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.gcp.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
+          flags: '--port=8080'
+
+      - name: Allow public access on backend (if org policy permits)
+        if: steps.check.outputs.mode != 'none'
+        continue-on-error: true
+        run: gcloud run services add-iam-policy-binding northgate-backend --region=${{ env.REGION }} --member=allUsers --role=roles/run.invoker
+
       - name: Build and push frontend image to GCP
-        if: steps.check.outputs.configured == 'true'
+        if: steps.check.outputs.mode != 'none'
         run: |
-          IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
+          IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.gcp.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
           docker build --build-arg VITE_API_URL=${{ steps.deploy-backend.outputs.url }} -t "$IMAGE" ./frontend
           docker push "$IMAGE"
+
       - name: Deploy frontend to Cloud Run
-        if: steps.check.outputs.configured == 'true'
+        if: steps.check.outputs.mode != 'none'
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: northgate-frontend
           region: ${{ env.REGION }}
-          image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
-          flags: '--allow-unauthenticated --port=8080'
+          image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.gcp.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
+          flags: '--port=8080'
+
+      - name: Allow public access on frontend (if org policy permits)
+        if: steps.check.outputs.mode != 'none'
+        continue-on-error: true
+        run: gcloud run services add-iam-policy-binding northgate-frontend --region=${{ env.REGION }} --member=allUsers --role=roles/run.invoker
