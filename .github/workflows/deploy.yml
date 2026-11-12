@@ -65,6 +65,7 @@ jobs:
           service: northgate-backend
           region: ${{ env.REGION }}
           image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
+          flags: '--allow-unauthenticated --port=8080'
       - name: Build and push frontend image
         run: |
           IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
@@ -76,3 +77,4 @@ jobs:
           service: northgate-frontend
           region: ${{ env.REGION }}
           image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
+          flags: '--allow-unauthenticated --port=8080'
