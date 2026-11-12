@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.deepeval/
+.venv/
+
+# Backend runtime data
+backend/data/
+backend/uploads/
+
+# Frontend / Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+*.log
+.DS_Store

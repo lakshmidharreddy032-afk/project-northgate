@@ -1,0 +1,78 @@
+name: Build & Deploy Project Northgate to GCP Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REGION: asia-south1
+  ARTIFACT_REPO: northgate
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
+      - name: Run pytest suite
+        run: pytest backend/tests/ -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build & typecheck frontend
+        working-directory: frontend
+        run: npm ci && npm run build
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ steps.auth.outputs.project_id }}
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+      - name: Ensure Artifact Registry repository exists
+        run: |
+          gcloud artifacts repositories describe ${{ env.ARTIFACT_REPO }} \
+            --location=${{ env.REGION }} --project=${{ steps.auth.outputs.project_id }} || \
+          gcloud artifacts repositories create ${{ env.ARTIFACT_REPO }} \
+            --repository-format=docker --location=${{ env.REGION }} \
+            --project=${{ steps.auth.outputs.project_id }}
+      - name: Build and push backend image
+        run: |
+          IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
+          docker build -t "$IMAGE" ./backend
+          docker push "$IMAGE"
+      - name: Deploy backend to Cloud Run
+        id: deploy-backend
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: northgate-backend
+          region: ${{ env.REGION }}
+          image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/backend:${{ github.sha }}
+      - name: Build and push frontend image
+        run: |
+          IMAGE=${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}
+          docker build --build-arg VITE_API_URL=${{ steps.deploy-backend.outputs.url }} -t "$IMAGE" ./frontend
+          docker push "$IMAGE"
+      - name: Deploy frontend to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: northgate-frontend
+          region: ${{ env.REGION }}
+          image: ${{ env.REGION }}-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/${{ env.ARTIFACT_REPO }}/frontend:${{ github.sha }}

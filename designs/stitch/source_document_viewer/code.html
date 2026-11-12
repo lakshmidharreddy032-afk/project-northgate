@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-fixed": "#dbe1ff", "surface-container-high": "#dce9ff", "tertiary-fixed-dim": "#b9c7df", "on-primary-fixed-variant": "#324866", "outline": "#74777e", "outline-variant": "#c4c6ce", "on-background": "#0b1c30", "on-surface-variant": "#44474d", "primary-fixed": "#d4e3ff", "on-primary": "#ffffff", "inverse-surface": "#213145", "primary-container": "#0f2744", "tertiary-container": "#192739", "surface-container-low": "#eff4ff", "surface-container-lowest": "#ffffff", "primary": "#001229", "error": "#ba1a1a", "surface-dim": "#cbdbf5", "on-tertiary-container": "#808ea4", "on-error": "#ffffff", "on-primary-fixed": "#021c39", "inverse-primary": "#b2c8ed", "surface-tint": "#4a5f7f", "on-secondary-container": "#fefcff", "on-surface": "#0b1c30", "surface-container-highest": "#d3e4fe", "on-secondary": "#ffffff", "inverse-on-surface": "#eaf1ff", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#3a485b", "surface-bright": "#f8f9ff", "on-primary-container": "#798fb1", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b2c8ed", "secondary": "#0051d5", "surface": "#f8f9ff", "on-secondary-fixed": "#00174b", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#0d1c2e", "background": "#f8f9ff", "tertiary": "#041223", "secondary-fixed-dim": "#b4c5ff", "on-secondary-fixed-variant": "#003ea8", "secondary-container": "#316bf3", "tertiary-fixed": "#d5e3fc", "surface-container": "#e5eeff", "error-container": "#ffdad6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.375rem", "space-xl": "1.5rem", "gutter-desktop": "1rem", "space-xs": "0.25rem", "margin-desktop": "1.5rem", "space-lg": "1rem", "margin": "1rem", "gutter": "0.75rem", "space-md": "0.75rem" }, "fontFamily": { "body-md": ["Inter"], "headline-sm": ["Inter"], "headline-lg": ["Inter"], "tabular-mono-sm": ["JetBrains Mono"], "headline-xl": ["Inter"], "tabular-mono": ["JetBrains Mono"], "body-sm": ["Inter"], "headline-md": ["Inter"], "body-lg": ["Inter"], "label-md": ["Inter"], "label-sm": ["Inter"] }, "fontSize": { "body-md": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0", "fontWeight": "400" }], "headline-sm": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "0", "fontWeight": "600" }], "headline-lg": ["1.375rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" }], "tabular-mono-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.01em", "fontWeight": "500" }], "headline-xl": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }], "tabular-mono": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0", "fontWeight": "400" }], "body-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-md": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "600" }], "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.035em", "fontWeight": "600" }] } } } }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased select-none"><header class="fixed top-0 left-0 right-0 h-14 bg-surface-container-lowest z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm">N</div><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">Project Northgate</span><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">verified_user</span>FedRAMP High</span></div></div></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Case ID:</span><span class="font-tabular-mono text-tabular-mono bg-surface-container-low px-space-xs py-0.5 rounded text-on-surface font-semibold">CASE-2024-8841</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Entity:</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Harbor Crest Holdings Ltd</span></div><div class="flex items-center gap-1.5 px-space-sm py-0.5 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span>Ready for Review</span></div><div class="flex items-center gap-1 px-space-sm py-0.5 rounded bg-surface-container-low font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">timer</span><span>Cycle Time: 04m 18s</span></div></div></div><div class="flex items-center gap-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2 text-[16px] text-on-surface-variant pointer-events-none">search</span><input class="w-60 h-8 pl-7 pr-space-sm bg-surface-container-low rounded font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest" placeholder="Quick search entity, UBO, LEI..." type="text"/></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-sm"><div class="text-right"><div class="font-label-md text-label-md text-on-surface leading-tight">Marcus Vance</div><div class="font-label-sm text-label-sm text-on-surface-variant leading-tight">KYC Senior Analyst</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-14 bottom-7 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between py-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-xs px-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-semibold">Operational Queue</div><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-sm"><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="intake-queue" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">move_to_inbox</span><span>Intake Queue</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">14</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="processing-state" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">hourglass_top</span><span>Processing State</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">1 active</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="ownership-workbench" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">account_tree</span><span>Ownership Workbench</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">Primary</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="registry-reconciliation" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">sync_alt</span><span>Registry Reconciliation</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-semibold">1 Discrepancy</span></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-1.5 rounded transition-colors bg-primary-container text-on-primary font-semibold shadow-sm" data-path="document-viewer" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">description</span><span>Document Viewer</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">Extracted</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="deficiency-punch-list" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">rule</span><span>Deficiency Punch List</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-semibold">3 Critical</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="audit-trail" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">history_edu</span><span>Audit Trail</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">Live</span></a></nav></div><div class="px-space-sm pt-space-sm"><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary font-semibold"><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings-compliance-policy" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">policy</span><span>Settings &amp; Policy</span></div><span class="material-symbols-outlined text-[14px] text-on-surface-variant">lock</span></a></nav></div></aside><div class="pl-64"><main class="w-full min-h-screen pt-14 pb-7 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Command Toolbar -->
+<div class="w-full bg-surface-container-lowest px-gutter-desktop py-space-xs shadow-sm flex flex-wrap items-center justify-between gap-space-md z-30">
+<!-- Left Section: Document Context & Switcher -->
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">feed</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Active Source:</span>
+</div>
+<!-- Document Switcher Dropdown -->
+<div class="relative inline-block text-left" id="doc-switcher-container">
+<button class="h-8 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded font-body-sm text-body-sm flex items-center gap-space-sm transition-colors" id="doc-switcher-btn" type="button">
+<span class="font-semibold text-primary">Certificate_of_Incorporation_and_Articles.pdf</span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant px-1 rounded bg-surface-container-lowest">pg 4/24</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</button>
+<!-- Dropdown Menu -->
+<div class="hidden absolute left-0 mt-1 w-80 bg-surface-container-lowest rounded-lg shadow-xl z-50 py-1" id="doc-menu">
+<div class="px-space-sm py-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Evidentiary File Vault</div>
+<a class="flex items-center justify-between px-space-sm py-2 bg-surface-container-low text-on-surface font-body-sm text-body-sm" href="#">
+<div class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-medium truncate">Articles of Association</span>
+</div>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">24 pgs</span>
+</a>
+<a class="flex items-center justify-between px-space-sm py-2 hover:bg-surface-container-low text-on-surface font-body-sm text-body-sm transition-colors" href="#">
+<div class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">description</span>
+<span class="truncate">Register of Members</span>
+</div>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">8 pgs</span>
+</a>
+<a class="flex items-center justify-between px-space-sm py-2 hover:bg-surface-container-low text-on-surface font-body-sm text-body-sm transition-colors" href="#">
+<div class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">badge</span>
+<span class="truncate">Passport - Arthur Pendelton</span>
+</div>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">2 pgs</span>
+</a>
+<a class="flex items-center justify-between px-space-sm py-2 hover:bg-surface-container-low text-on-surface font-body-sm text-body-sm transition-colors" href="#">
+<div class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">receipt_long</span>
+<span class="truncate">Proof of Address - Utility Bill</span>
+</div>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">1 pg</span>
+</a>
+</div>
+</div>
+<!-- Quick Hash Pill -->
+<div class="flex items-center gap-1 font-tabular-mono-sm text-tabular-mono-sm bg-surface-container-high px-space-xs py-0.5 rounded text-on-surface-variant">
+<span>SHA-256:</span>
+<span class="font-semibold text-on-surface">d9e4...b71c</span>
+</div>
+</div>
+<!-- Center/Right: PDF Controls & Toggles -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<!-- Pagination -->
+<div class="flex items-center bg-surface-container-low rounded p-0.5 shadow-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" title="First Page">
+<span class="material-symbols-outlined text-[16px]">first_page</span>
+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" title="Previous Page">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<div class="px-space-xs flex items-center gap-1 font-tabular-mono-sm text-tabular-mono-sm text-on-surface">
+<span class="font-semibold bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-sm text-primary">04</span>
+<span class="text-on-surface-variant">/</span>
+<span class="text-on-surface-variant">24</span>
+</div>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" title="Next Page">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" title="Last Page">
+<span class="material-symbols-outlined text-[16px]">last_page</span>
+</button>
+</div>
+<!-- Zoom & Fit -->
+<div class="flex items-center bg-surface-container-low rounded p-0.5 shadow-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" id="zoom-out-btn" title="Zoom Out">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 font-medium text-on-surface" id="zoom-val">125%</span>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" id="zoom-in-btn" title="Zoom In">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+<div class="w-px h-4 bg-surface-container-high mx-0.5"></div>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" title="Fit to Width">
+<span class="material-symbols-outlined text-[16px]">fit_screen</span>
+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" title="Rotate Clockwise">
+<span class="material-symbols-outlined text-[16px]">rotate_right</span>
+</button>
+</div>
+<!-- OCR Layer Switch -->
+<button class="h-8 px-space-sm bg-secondary-container text-on-secondary-container hover:bg-secondary rounded font-label-sm text-label-sm flex items-center gap-1.5 shadow-sm transition-colors" id="ocr-toggle-btn">
+<span class="material-symbols-outlined text-[16px]">layers</span>
+<span>OCR Bounding Layer</span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-pulse"></span>
+</button>
+<!-- Original PDF Download -->
+<button class="h-8 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">download</span>
+<span>Original PDF</span>
+</button>
+</div>
+</div>
+<!-- Primary Split Workbench Area -->
+<div class="w-full flex flex-col lg:flex-row items-stretch min-h-[calc(100vh-7.5rem)] bg-surface-container-high/40">
+<!-- LEFT PANE: Scanned Legal Document Canvas (55% desktop width) -->
+<div class="w-full lg:w-[55%] flex flex-col items-center p-space-md lg:p-space-lg overflow-y-auto max-h-[calc(100vh-7.5rem)] relative">
+<!-- Regulatory Watermark Floating Stamp -->
+<div class="pointer-events-none fixed bottom-12 left-72 z-20 opacity-30 select-none hidden lg:block">
+<div class="font-tabular-mono text-headline-sm uppercase tracking-widest text-on-surface-variant rotate-[-25deg] border-2 border-dashed border-outline-variant p-space-sm rounded">
+          CONFIDENTIAL REGULATORY EVIDENCE • CASE-2024-8841
+        </div>
+</div>
+<!-- Scanned Physical Page Shell -->
+<div class="w-full max-w-[740px] bg-surface-container-lowest rounded shadow-md transition-all duration-200 relative p-8 lg:p-12 text-on-surface select-text" id="document-canvas-card">
+<!-- Evidentiary Marginalia / Header Scan Artifacts -->
+<div class="flex justify-between items-center pb-6 text-on-surface-variant select-none">
+<div class="flex items-center gap-2">
+<span class="font-tabular-mono-sm text-tabular-mono-sm font-semibold tracking-wider text-outline">COMPANIES ACT 2006</span>
+<span class="text-on-surface-variant/40">•</span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-outline">FORM 01-A REG</span>
+</div>
+<div class="text-right font-tabular-mono-sm text-tabular-mono-sm text-outline">
+            PAGE 4 OF 24 [OFFICIAL ARCHIVE]
+          </div>
+</div>
+<!-- Official Header Crest Mock -->
+<div class="flex flex-col items-center text-center pb-8">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center mb-2 shadow-inner">
+<span class="material-symbols-outlined text-[28px] text-primary">account_balance</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight uppercase">Articles of Association</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant uppercase tracking-widest mt-1">Harbor Crest Holdings Ltd</p>
+<div class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant mt-0.5">Company No. 09482103 • Registered in England &amp; Wales</div>
+</div>
+<!-- Section 10: General Authority -->
+<div class="mb-6 opacity-75">
+<h2 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-1">Clause 10 — Exclusion of Model Articles</h2>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-justify">
+            The regulations contained in the Model Articles for Private Companies Limited by Shares set out in Schedule 1 of The Companies (Model Articles) Regulations 2008 shall apply to the Company, save in so far as they are excluded or varied hereby or are inconsistent with these Articles.
+          </p>
+</div>
+<!-- Section 11: Share Classes -->
+<div class="mb-6 opacity-75">
+<h2 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-1">Clause 11 — Class Rights and Voting</h2>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-justify">
+            Subject to the provisions of the Companies Act 2006, any share in the Company may be issued with or have attached thereto such special rights, privileges or conditions as the Company may by Ordinary Resolution determine.
+          </p>
+</div>
+<!-- BOUNDING BOX 1 (ACTIVE / DISCREPANCY: Section 12 Registered Office) -->
+<div class="mb-6 relative group" id="bbox-container-1">
+<h2 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-1">Clause 12 — Registered Office Address</h2>
+<div class="relative p-1 rounded transition-all">
+<!-- Simulated Text -->
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-justify">
+              The registered office of the Company shall be situated in England and Wales and shall at incorporation be situated at:
+            </p>
+<!-- HIGHLIGHTED BOUNDING BOX ELEMENT -->
+<div class="relative mt-2 p-2.5 rounded bg-secondary-container/20 ring-2 ring-secondary shadow-md cursor-pointer transition-all duration-150" id="bbox-1">
+<!-- Floating Bounding Tag -->
+<div class="absolute -top-3 left-3 bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded shadow flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+<span>Box #1: Declared Office Address (Discrepancy #1)</span>
+</div>
+<!-- High-density Text Target -->
+<div class="font-tabular-mono text-body-md font-semibold text-primary pl-1 pt-1">
+                Suite 401, 25 Finsbury Circus, London EC2M 7EE
+              </div>
+<!-- Bounding Box Coordinate Marker Tag -->
+<div class="text-right font-tabular-mono-sm text-tabular-mono-sm text-secondary font-medium mt-1">
+                [x:142, y:380, w:420, h:48] • Conf: 99.4%
+              </div>
+</div>
+</div>
+</div>
+<!-- Section 13: Management Power -->
+<div class="mb-6 opacity-75">
+<h2 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-1">Clause 13 — Powers of the Board</h2>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-justify">
+            The business of the Company shall be managed by the Directors, who may pay all expenses incurred in promoting and registering the Company, and may exercise all such powers of the Company as are not by the Act required to be exercised in general meeting.
+          </p>
+</div>
+<!-- BOUNDING BOX 2 (Teal Bounding: Clause 14 Share Capital) -->
+<div class="mb-6 relative group" id="bbox-container-2">
+<h2 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-1">Clause 14 — Share Capital &amp; Initial Allotment</h2>
+<div class="relative p-1 rounded">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-justify">
+              At the date of adoption of these Articles, the nominal share capital of the Company is divided into 100,000 Ordinary Shares of £1.00 each. The primary initial allotment is assigned as follows:
+            </p>
+<!-- HIGHLIGHTED BOUNDING BOX ELEMENT 2 -->
+<div class="relative mt-2 p-2.5 rounded bg-surface-container-high/40 ring-1 ring-secondary-container shadow-sm hover:ring-2 hover:bg-surface-container-high cursor-pointer transition-all duration-150" id="bbox-2">
+<div class="absolute -top-2.5 left-3 bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-1.5 py-0.2 rounded shadow-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">done</span>
+<span>Box #2: Majority Shareholding Allocation</span>
+</div>
+<div class="font-tabular-mono text-body-md text-primary font-medium pl-1 pt-1">
+                Atlantic Horizon Capital Ltd holds 60,000 ordinary shares (60.0%)
+              </div>
+<div class="text-right font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant mt-1">
+                [x:142, y:510, w:435, h:36] • Conf: 98.9%
+              </div>
+</div>
+</div>
+</div>
+<!-- BOUNDING BOX 3 (Slate Bounding: Clause 15 Director Appointment) -->
+<div class="mb-6 relative group" id="bbox-container-3">
+<h2 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-1">Clause 15 — Appointment of First Officers</h2>
+<div class="relative p-1 rounded">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed text-justify">
+              The first officers of the Company shall be formally inscribed into the Statutory Register. Pursuant to the constitutive minutes:
+            </p>
+<!-- HIGHLIGHTED BOUNDING BOX ELEMENT 3 -->
+<div class="relative mt-2 p-2.5 rounded bg-surface-container-low ring-1 ring-outline-variant shadow-sm hover:ring-2 hover:bg-surface-container cursor-pointer transition-all duration-150" id="bbox-3">
+<div class="absolute -top-2.5 left-3 bg-tertiary text-on-tertiary font-label-sm text-label-sm px-1.5 py-0.2 rounded shadow-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">badge</span>
+<span>Box #3: Director Signatory</span>
+</div>
+<div class="font-tabular-mono text-body-md text-primary font-medium pl-1 pt-1">
+                Marcus Sterling, Managing Director (Appointed 14 March 2015)
+              </div>
+<div class="text-right font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant mt-1">
+                [x:142, y:630, w:390, h:36] • Conf: 99.6%
+              </div>
+</div>
+</div>
+</div>
+<!-- Page Footer Inscription -->
+<div class="pt-8 flex justify-between items-center text-outline-variant select-none">
+<div class="font-tabular-mono-sm text-tabular-mono-sm uppercase">NORTHGATE AUTOMATED DOC OCR PIPELINE v4.2</div>
+<div class="font-tabular-mono-sm text-tabular-mono-sm">REF: HARBOR-CREST-DOCS-ARCHIVE-488</div>
+</div>
+</div>
+<!-- Quick Document Status Tag below page -->
+<div class="w-full max-w-[740px] mt-space-sm flex items-center justify-between px-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">cloud_done</span>
+          Cryptographically Verified Scan Extract • Certified by Companies House Gateway
+        </span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm">Page dimensions: 595 × 842 pt (A4)</span>
+</div>
+</div>
+<!-- RIGHT PANE: Extracted Structured Fields & Audit Traceability (45% desktop width) -->
+<div class="w-full lg:w-[45%] bg-surface-container-lowest p-space-md lg:p-space-lg flex flex-col justify-between overflow-y-auto max-h-[calc(100vh-7.5rem)] shadow-sm">
+<!-- Right Pane Header Section -->
+<div class="flex flex-col gap-space-sm pb-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Evidentiary Extracted Attributes</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">Articles of Association (Page 4)</h2>
+</div>
+<!-- Extraction Confidence Badge -->
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 px-space-sm py-1 rounded bg-surface-container-low">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-tabular-mono text-label-md font-semibold text-primary">99.2%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">OCR Conf</span>
+</div>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant mt-0.5">Model: LayoutLMv3-Inst</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Extracted structural entities correlated in real-time with statutory registries and KYC ownership graph. Select any field to center viewport bounding box.
+        </p>
+</div>
+<!-- Scrollable Extracted Cards Container -->
+<div class="flex flex-col gap-space-md flex-grow overflow-y-auto pr-1">
+<!-- CARD 1: Selected & High Priority Discrepancy (Registered Office Address) -->
+<div class="p-space-md rounded bg-surface-container-low ring-2 ring-secondary shadow-sm transition-all duration-150 flex flex-col gap-space-sm" id="card-1">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">location_on</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">Registered Office Address</span>
+</div>
+<!-- High Severity Discrepancy Badge -->
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span>Registry Discrepancy Found</span>
+</div>
+</div>
+<!-- Document Extracted Value -->
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-0.5">Declared Value in Document:</div>
+<div class="font-tabular-mono text-headline-sm font-semibold text-primary select-all">
+              Suite 401, 25 Finsbury Circus, London EC2M 7EE
+            </div>
+</div>
+<!-- Comparative Discrepancy Callout Box -->
+<div class="p-space-sm rounded bg-error-container/40 flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-error mt-0.5 shrink-0">difference</span>
+<div class="flex flex-col">
+<div class="font-label-sm text-label-sm font-bold text-on-error-container uppercase">Companies House Live Registry Conflict:</div>
+<div class="font-tabular-mono text-body-sm font-medium text-on-surface mt-0.5">
+                Current Registered Address: <span class="font-semibold text-primary underline">128 Cannon Street, 3rd Floor, London EC4N 6AS</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Filing AD01 registered 18 months post-incorporation. Legal documentation update required.
+              </div>
+</div>
+</div>
+<!-- Traceability Metadata Grid -->
+<div class="grid grid-cols-2 gap-space-xs font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant py-1">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">crop</span>
+<span>Coords: [142, 380, 420, 48]</span>
+</div>
+<div class="flex items-center gap-1 justify-end">
+<span class="material-symbols-outlined text-[13px]">document_scanner</span>
+<span>Page 4 • Clause 12</span>
+</div>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex items-center gap-space-xs pt-space-xs flex-wrap">
+<button class="h-7 px-space-sm bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm flex items-center gap-1 shadow-xs transition-colors" id="copy-btn-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copy Text</span>
+</button>
+<button class="h-7 px-space-sm bg-error-container hover:bg-error/20 text-on-error-container rounded font-label-sm text-label-sm flex items-center gap-1 font-semibold transition-colors">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span>Flag as Deficiency</span>
+</button>
+<button class="h-7 px-space-sm bg-surface-container-lowest hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+<span>View in Registry Table</span>
+</button>
+</div>
+</div>
+<!-- CARD 2: Direct Shareholding (Verified) -->
+<div class="p-space-md rounded bg-surface-container-lowest shadow-sm hover:bg-surface-container-low/50 transition-all duration-150 flex flex-col gap-space-sm cursor-pointer" id="card-2">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">pie_chart</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">Direct Shareholding Allocation</span>
+</div>
+<!-- Clean Status Badge -->
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container-low text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Verified in Register of Members</span>
+</div>
+</div>
+<div class="bg-surface-container-low/50 p-space-sm rounded">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-0.5">Entity / Allocation:</div>
+<div class="font-headline-sm text-headline-sm font-semibold text-primary">
+              Atlantic Horizon Capital Ltd
+            </div>
+<div class="font-tabular-mono text-body-md text-secondary font-semibold mt-0.5">
+              60.0% (60,000 Ordinary Shares of £1.00 each)
+            </div>
+</div>
+<div class="flex items-center justify-between font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">
+<span>Location: Page 4, Clause 14.2</span>
+<span>UBO Threshold Exceeded (&gt;25%)</span>
+</div>
+</div>
+<!-- CARD 3: Authorized Signatory / Director (Verified) -->
+<div class="p-space-md rounded bg-surface-container-lowest shadow-sm hover:bg-surface-container-low/50 transition-all duration-150 flex flex-col gap-space-sm cursor-pointer" id="card-3">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">person_check</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">Authorized Signatory / Director</span>
+</div>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container-low text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Registry Verified</span>
+</div>
+</div>
+<div class="bg-surface-container-low/50 p-space-sm rounded">
+<div class="font-headline-sm text-headline-sm font-semibold text-primary">
+              Marcus Sterling
+            </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Managing Director • Appointed at Inception
+            </div>
+</div>
+<div class="flex items-center justify-between font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">
+<span>Location: Page 4, Clause 15.1</span>
+<span>Sanctions Screen: Clean (0 Matches)</span>
+</div>
+</div>
+</div>
+<!-- ANALYST WORKBENCH INTERACTION SECTION (Bottom Pinned) -->
+<div class="pt-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+            KYC Senior Analyst Case Annotation
+          </span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">Auth: Marcus Vance</span>
+</div>
+<div class="relative">
+<textarea class="w-full p-2.5 bg-surface-container-low rounded font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest shadow-sm leading-relaxed" id="analyst-observation-input" placeholder="Enter evidentiary observation or punch-list deficiency instructions..." rows="3">Analyst Observation: Declared address matches 2015 formation deed, but RM must request latest board resolution or lease confirmation for Cannon Street change.</textarea>
+</div>
+<div class="flex items-center justify-between gap-space-sm flex-wrap">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-tabular-mono-sm text-tabular-mono-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified_user</span>
+<span>Immutable Audit Trail Integration Active</span>
+</div>
+<button class="h-8 px-space-md bg-primary-container text-on-primary hover:bg-primary rounded font-label-sm text-label-sm font-semibold flex items-center gap-1.5 shadow-sm transition-colors" id="attach-note-btn">
+<span class="material-symbols-outlined text-[16px]">assignment_turned_in</span>
+<span>Attach Note to Deficiency Ticket</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast Notification Simulator for Micro-interactions -->
+<div class="fixed bottom-10 right-10 z-50 transform translate-y-16 opacity-0 transition-all duration-300 bg-primary text-on-primary px-space-md py-space-sm rounded shadow-xl flex items-center gap-space-sm font-body-sm text-body-sm" id="toast-notify">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+<span id="toast-text">Observation logged to case record.</span>
+</div>
+</div>
+<script>
+  // Micro-interactions & State Management
+  (function() {
+    // Document Switcher Toggle
+    const docSwitcherBtn = document.getElementById('doc-switcher-btn');
+    const docMenu = document.getElementById('doc-menu');
+    if (docSwitcherBtn && docMenu) {
+      docSwitcherBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        docMenu.classList.toggle('hidden');
+      });
+      document.addEventListener('click', () => {
+        if (!docMenu.classList.contains('hidden')) {
+          docMenu.classList.add('hidden');
+        }
+      });
+    }
+
+    // Interactive Bounding Box & Card Focus Linking
+    const card1 = document.getElementById('card-1');
+    const card2 = document.getElementById('card-2');
+    const card3 = document.getElementById('card-3');
+
+    const bbox1 = document.getElementById('bbox-1');
+    const bbox2 = document.getElementById('bbox-2');
+    const bbox3 = document.getElementById('bbox-3');
+
+    function resetBboxFocus() {
+      [bbox1, bbox2, bbox3].forEach(b => {
+        if (b) {
+          b.classList.remove('ring-4', 'ring-secondary', 'bg-secondary-container/30');
+          b.classList.add('ring-1');
+        }
+      });
+    }
+
+    if (card1 && bbox1) {
+      card1.addEventListener('mouseenter', () => {
+        bbox1.classList.add('ring-4', 'ring-secondary');
+      });
+      card1.addEventListener('mouseleave', () => {
+        bbox1.classList.remove('ring-4');
+      });
+      bbox1.addEventListener('click', () => {
+        card1.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card1.classList.add('bg-surface-container-high');
+        setTimeout(() => card1.classList.remove('bg-surface-container-high'), 1200);
+      });
+    }
+
+    if (card2 && bbox2) {
+      card2.addEventListener('mouseenter', () => {
+        bbox2.classList.add('ring-2', 'ring-secondary-container');
+      });
+      card2.addEventListener('mouseleave', () => {
+        bbox2.classList.remove('ring-2');
+      });
+      bbox2.addEventListener('click', () => {
+        card2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card2.classList.add('bg-surface-container-high');
+        setTimeout(() => card2.classList.remove('bg-surface-container-high'), 1200);
+      });
+    }
+
+    if (card3 && bbox3) {
+      card3.addEventListener('mouseenter', () => {
+        bbox3.classList.add('ring-2', 'ring-primary');
+      });
+      card3.addEventListener('mouseleave', () => {
+        bbox3.classList.remove('ring-2');
+      });
+      bbox3.addEventListener('click', () => {
+        card3.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card3.classList.add('bg-surface-container-high');
+        setTimeout(() => card3.classList.remove('bg-surface-container-high'), 1200);
+      });
+    }
+
+    // Zoom Controls Simulator
+    let zoomLevel = 125;
+    const zoomVal = document.getElementById('zoom-val');
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    const docCard = document.getElementById('document-canvas-card');
+
+    if (zoomInBtn && zoomOutBtn && zoomVal && docCard) {
+      zoomInBtn.addEventListener('click', () => {
+        if (zoomLevel < 175) {
+          zoomLevel += 15;
+          zoomVal.textContent = zoomLevel + '%';
+          docCard.style.transform = `scale(${zoomLevel / 125})`;
+          docCard.style.transformOrigin = 'top center';
+        }
+      });
+      zoomOutBtn.addEventListener('click', () => {
+        if (zoomLevel > 80) {
+          zoomLevel -= 15;
+          zoomVal.textContent = zoomLevel + '%';
+          docCard.style.transform = `scale(${zoomLevel / 125})`;
+          docCard.style.transformOrigin = 'top center';
+        }
+      });
+    }
+
+    // OCR Layer Visibility Toggle
+    const ocrBtn = document.getElementById('ocr-toggle-btn');
+    let ocrActive = true;
+    if (ocrBtn) {
+      ocrBtn.addEventListener('click', () => {
+        ocrActive = !ocrActive;
+        const bboxes = [bbox1, bbox2, bbox3];
+        bboxes.forEach(box => {
+          if (box) {
+            box.style.opacity = ocrActive ? '1' : '0.15';
+          }
+        });
+        if (ocrActive) {
+          ocrBtn.classList.replace('bg-surface-container-low', 'bg-secondary-container');
+          ocrBtn.classList.replace('text-on-surface', 'text-on-secondary-container');
+        } else {
+          ocrBtn.classList.replace('bg-secondary-container', 'bg-surface-container-low');
+          ocrBtn.classList.replace('text-on-secondary-container', 'text-on-surface');
+        }
+      });
+    }
+
+    // Toast Utility
+    const toast = document.getElementById('toast-notify');
+    const toastText = document.getElementById('toast-text');
+    function triggerToast(msg) {
+      if (toast && toastText) {
+        toastText.textContent = msg;
+        toast.classList.remove('translate-y-16', 'opacity-0');
+        setTimeout(() => {
+          toast.classList.add('translate-y-16', 'opacity-0');
+        }, 3200);
+      }
+    }
+
+    // Copy text action
+    const copyBtn = document.getElementById('copy-btn-1');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard?.writeText('Suite 401, 25 Finsbury Circus, London EC2M 7EE');
+        triggerToast('Address copied to system clipboard.');
+      });
+    }
+
+    // Attach Note action
+    const noteBtn = document.getElementById('attach-note-btn');
+    if (noteBtn) {
+      noteBtn.addEventListener('click', () => {
+        triggerToast('Deficiency ticket DEF-8841-01 appended with observation.');
+      });
+    }
+  })();
+</script></main></div><footer class="fixed bottom-0 left-0 right-0 h-7 bg-surface-container-lowest z-50 flex items-center justify-between px-gutter-desktop shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-space-xs"><span class="inline-block w-2 h-2 rounded-full bg-secondary"></span><span>Institutional KYC Workbench • Prototype with sample data • Strictly Confidential</span></div><div class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">Traceability Engine v4.2</div></footer></body></html>

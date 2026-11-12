@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-fixed": "#dbe1ff", "surface-container-high": "#dce9ff", "tertiary-fixed-dim": "#b9c7df", "on-primary-fixed-variant": "#324866", "outline": "#74777e", "outline-variant": "#c4c6ce", "on-background": "#0b1c30", "on-surface-variant": "#44474d", "primary-fixed": "#d4e3ff", "on-primary": "#ffffff", "inverse-surface": "#213145", "primary-container": "#0f2744", "tertiary-container": "#192739", "surface-container-low": "#eff4ff", "surface-container-lowest": "#ffffff", "primary": "#001229", "error": "#ba1a1a", "surface-dim": "#cbdbf5", "on-tertiary-container": "#808ea4", "on-error": "#ffffff", "on-primary-fixed": "#021c39", "inverse-primary": "#b2c8ed", "surface-tint": "#4a5f7f", "on-secondary-container": "#fefcff", "on-surface": "#0b1c30", "surface-container-highest": "#d3e4fe", "on-secondary": "#ffffff", "inverse-on-surface": "#eaf1ff", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#3a485b", "surface-bright": "#f8f9ff", "on-primary-container": "#798fb1", "surface-variant": "#d3e4fe", "primary-fixed-dim": "#b2c8ed", "secondary": "#0051d5", "surface": "#f8f9ff", "on-secondary-fixed": "#00174b", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#0d1c2e", "background": "#f8f9ff", "tertiary": "#041223", "secondary-fixed-dim": "#b4c5ff", "on-secondary-fixed-variant": "#003ea8", "secondary-container": "#316bf3", "tertiary-fixed": "#d5e3fc", "surface-container": "#e5eeff", "error-container": "#ffdad6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.375rem", "space-xl": "1.5rem", "gutter-desktop": "1rem", "space-xs": "0.25rem", "margin-desktop": "1.5rem", "space-lg": "1rem", "margin": "1rem", "gutter": "0.75rem", "space-md": "0.75rem" }, "fontFamily": { "body-md": ["Inter"], "headline-sm": ["Inter"], "headline-lg": ["Inter"], "tabular-mono-sm": ["JetBrains Mono"], "headline-xl": ["Inter"], "tabular-mono": ["JetBrains Mono"], "body-sm": ["Inter"], "headline-md": ["Inter"], "body-lg": ["Inter"], "label-md": ["Inter"], "label-sm": ["Inter"] }, "fontSize": { "body-md": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0", "fontWeight": "400" }], "headline-sm": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "0", "fontWeight": "600" }], "headline-lg": ["1.375rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.015em", "fontWeight": "600" }], "tabular-mono-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.01em", "fontWeight": "500" }], "headline-xl": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }], "tabular-mono": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0", "fontWeight": "400" }], "body-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-md": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["0.9375rem", { "lineHeight": "1.375rem", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "600" }], "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.035em", "fontWeight": "600" }] } } } }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased select-none"><header class="fixed top-0 left-0 right-0 h-14 bg-surface-container-lowest z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm">N</div><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">Project Northgate</span><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">verified_user</span>FedRAMP High</span></div></div></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Case ID:</span><span class="font-tabular-mono text-tabular-mono bg-surface-container-low px-space-xs py-0.5 rounded text-on-surface font-semibold">CASE-2024-8841</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Entity:</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Harbor Crest Holdings Ltd</span></div><div class="flex items-center gap-1.5 px-space-sm py-0.5 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span>Ready for Review</span></div><div class="flex items-center gap-1 px-space-sm py-0.5 rounded bg-surface-container-low font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">timer</span><span>Cycle Time: 04m 18s</span></div></div></div><div class="flex items-center gap-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2 text-[16px] text-on-surface-variant pointer-events-none">search</span><input class="w-60 h-8 pl-7 pr-space-sm bg-surface-container-low rounded font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest" placeholder="Quick search entity, UBO, LEI..." type="text"/></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-sm"><div class="text-right"><div class="font-label-md text-label-md text-on-surface leading-tight">Marcus Vance</div><div class="font-label-sm text-label-sm text-on-surface-variant leading-tight">KYC Senior Analyst</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-14 bottom-7 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between py-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-xs px-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-semibold">Operational Queue</div><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-sm"><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="intake-queue" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">move_to_inbox</span><span>Intake Queue</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">14</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="processing-state" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">hourglass_top</span><span>Processing State</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">1 active</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="ownership-workbench" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">account_tree</span><span>Ownership Workbench</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">Primary</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="registry-reconciliation" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">sync_alt</span><span>Registry Reconciliation</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-semibold">1 Discrepancy</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="document-viewer" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">description</span><span>Document Viewer</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">Extracted</span></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-1.5 rounded transition-colors bg-primary-container text-on-primary font-semibold shadow-sm" data-path="deficiency-punch-list" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">rule</span><span>Deficiency Punch List</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-semibold">3 Critical</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="audit-trail" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">history_edu</span><span>Audit Trail</span></div><span class="font-tabular-mono-sm text-tabular-mono-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">Live</span></a></nav></div><div class="px-space-sm pt-space-sm"><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary font-semibold"><a class="flex items-center justify-between px-space-sm py-1.5 rounded font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings-compliance-policy" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">policy</span><span>Settings &amp; Policy</span></div><span class="material-symbols-outlined text-[14px] text-on-surface-variant">lock</span></a></nav></div></aside><div class="pl-64"><main class="w-full min-h-screen pt-14 pb-7 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Command Ribbon & Header Context -->
+<div class="w-full bg-surface-container-lowest px-gutter-desktop py-space-md shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Deficiency Punch List &amp; Remediation Generator</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-tabular-mono-sm text-tabular-mono-sm font-semibold">STAGE 3 TRIAGE</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Actionable audit checklist of missing documentation and registry disparities for Relationship Manager resolution.</p>
+</div>
+<!-- Quick Action Controls -->
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<button class="h-8 px-space-md rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1.5 font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">refresh</span>
+<span>Sync Companies House</span>
+</button>
+<button class="h-8 px-space-md rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1.5 font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export Audit PDF</span>
+</button>
+<div class="h-5 w-px bg-surface-container-high"></div>
+<button class="h-8 px-space-md rounded bg-primary text-on-primary hover:bg-opacity-90 transition-colors flex items-center gap-1.5 font-label-md text-label-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_task</span>
+<span>Add Custom Item</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Body Content Area -->
+<div class="w-full p-gutter-desktop flex flex-col gap-space-lg">
+<!-- KPI / Status Summary Metrics Matrix -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Metric 1: Total Deficiencies -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Identified Deficiencies</span>
+<span class="w-7 h-7 rounded bg-surface-container-low text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">checklist</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">4</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">items total in case ledger</span>
+</div>
+<div class="mt-2 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-full"></div>
+</div>
+</div>
+<!-- Metric 2: Critical Blockers -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-error-container uppercase tracking-wider font-semibold">Critical Blockers</span>
+<span class="w-7 h-7 rounded bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">dangerous</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-error font-semibold">2</span>
+<span class="font-body-sm text-body-sm text-on-error-container font-medium">Halts account activation</span>
+</div>
+<div class="mt-2 h-1 w-full bg-error-container rounded-full overflow-hidden">
+<div class="h-full bg-error w-1/2"></div>
+</div>
+</div>
+<!-- Metric 3: Standard Missing Items -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Standard Missing</span>
+<span class="w-7 h-7 rounded bg-surface-container-low text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-semibold">2</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Remediation within 5 days</span>
+</div>
+<div class="mt-2 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-1/2"></div>
+</div>
+</div>
+<!-- Metric 4: Case Onboarding Status -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current Pipeline Gate</span>
+<span class="w-7 h-7 rounded bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>BLOCKED PENDING REMEDIATION</span>
+</div>
+</div>
+<div class="mt-2 text-right">
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">SLA Deadline: 18 Nov 2024 (T-48h)</span>
+</div>
+</div>
+</div>
+<!-- Deficiency Checklist Table Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm flex flex-col overflow-hidden">
+<!-- Card Subheader Toolbar -->
+<div class="px-space-md py-space-sm bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Evidentiary Discrepancy Ledger</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-tabular-mono-sm text-tabular-mono-sm font-semibold">4 / 4 Selected for Outreach</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="h-7 px-space-sm rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors" id="toggle-all-btn">
+            Select All
+          </button>
+<span class="text-on-surface-variant font-tabular-mono-sm text-tabular-mono-sm px-1">|</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+            Auto-audited via OCR &amp; LEI Index
+          </span>
+</div>
+</div>
+<!-- High Density Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="w-10 px-space-md py-2.5" scope="col">
+<input checked="" class="w-4 h-4 rounded text-secondary bg-surface-container-lowest focus:ring-0 cursor-pointer" id="master-checkbox" type="checkbox"/>
+</th>
+<th class="px-space-sm py-2.5 font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold" scope="col">Severity</th>
+<th class="px-space-sm py-2.5 font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold" scope="col">Deficiency Item</th>
+<th class="px-space-sm py-2.5 font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold" scope="col">Target Entity / Person</th>
+<th class="px-space-sm py-2.5 font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold" scope="col">Regulatory Reference</th>
+<th class="px-space-sm py-2.5 font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold" scope="col">Status</th>
+<th class="px-space-sm py-2.5 font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold text-right" scope="col">Age</th>
+<th class="px-space-md py-2.5 font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-md text-body-md">
+<!-- Item 1: Critical -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-space-md py-2.5 align-top">
+<input checked="" class="punch-item-check w-4 h-4 rounded text-secondary bg-surface-container-lowest focus:ring-0 cursor-pointer mt-0.5" type="checkbox"/>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-tight font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                  CRITICAL BLOCKER
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Proof of Current Registered Office Address</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Statutory address mismatch detected against registry database extract</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">domain</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Harbor Crest Holdings Ltd</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface font-semibold">FCA MLR 2017 / 5AMLD Art 13(1)(a)</span>
+<span class="font-body-sm text-body-sm text-error font-medium">Registry disparity: Cannon St vs Finsbury Circus</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px] text-secondary">pending</span>
+                  Pending RM Submission
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top text-right">
+<span class="font-tabular-mono text-tabular-mono text-on-surface font-semibold">2 Days</span>
+</td>
+<td class="px-space-md py-2.5 align-top text-right">
+<button class="h-7 px-space-sm rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm" type="button">
+                  Edit Item
+                </button>
+</td>
+</tr>
+<!-- Item 2: Critical -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-space-md py-2.5 align-top">
+<input checked="" class="punch-item-check w-4 h-4 rounded text-secondary bg-surface-container-lowest focus:ring-0 cursor-pointer mt-0.5" type="checkbox"/>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-tight font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                  CRITICAL BLOCKER
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Government-Issued Photo ID (Passport / National ID)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Identity document validity window exceeded prior to verification</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">person</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-medium">Arthur Pendelton</span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">32.0% Qualified UBO</span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface font-semibold">FATF Rec 10 / CDD UBO Verification</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Passport expired 12 Jan 2024</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[12px]">error</span>
+                  Unverified - Expired Document Provided
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top text-right">
+<span class="font-tabular-mono text-tabular-mono text-error font-semibold">4 Days</span>
+</td>
+<td class="px-space-md py-2.5 align-top text-right">
+<button class="h-7 px-space-sm rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm" type="button">
+                  Edit Item
+                </button>
+</td>
+</tr>
+<!-- Item 3: Warning -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-space-md py-2.5 align-top">
+<input checked="" class="punch-item-check w-4 h-4 rounded text-secondary bg-surface-container-lowest focus:ring-0 cursor-pointer mt-0.5" type="checkbox"/>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase tracking-tight font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+                  STANDARD WARNING
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Register of Directors (Certified True Copy)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Roster incomplete compared to electronic register resolution</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">domain</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Harbor Crest Holdings Ltd</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface font-semibold">Companies Act 2006 s.162</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Director list reconciliation</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px] text-secondary">manage_accounts</span>
+                  Missing Recent Director Ronald Chen
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top text-right">
+<span class="font-tabular-mono text-tabular-mono text-on-surface font-semibold">2 Days</span>
+</td>
+<td class="px-space-md py-2.5 align-top text-right">
+<button class="h-7 px-space-sm rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm" type="button">
+                  Edit Item
+                </button>
+</td>
+</tr>
+<!-- Item 4: Warning -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-space-md py-2.5 align-top">
+<input checked="" class="punch-item-check w-4 h-4 rounded text-secondary bg-surface-container-lowest focus:ring-0 cursor-pointer mt-0.5" type="checkbox"/>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase tracking-tight font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+                  STANDARD WARNING
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Certified Certificate of Incumbency for Cayman Entity</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Offshore layer requires jurisdictional standing confirmation</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">account_balance</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-medium">Atlantic Horizon Capital Ltd</span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">60% Intermediate Holding Co</span>
+</div>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<div class="flex flex-col">
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface font-semibold">Intermediate Holding Due Diligence</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cayman CIMA regulatory requirement</span>
+</div>
+</td>
+<td class="px-space-sm py-2.5 align-top">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px] text-secondary">hourglass_empty</span>
+                  Pending Cayman Agent Stamped Copy
+                </span>
+</td>
+<td class="px-space-sm py-2.5 align-top text-right">
+<span class="font-tabular-mono text-tabular-mono text-error font-semibold">5 Days</span>
+</td>
+<td class="px-space-md py-2.5 align-top text-right">
+<button class="h-7 px-space-sm rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm" type="button">
+                  Edit Item
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Bottom Section: Automated Institutional Outreach Panel & Case Timeline -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<!-- Email Composer / RM Remediation Dispatcher (8 cols) -->
+<div class="xl:col-span-8 bg-surface-container-lowest rounded-lg shadow-sm flex flex-col overflow-hidden">
+<!-- Header -->
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Draft Institutional Outreach</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Recipient: Sarah Lin (Senior Relationship Manager - Tier 1 Corporate Banking)</span>
+</div>
+</div>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant px-2 py-1 rounded bg-surface-container">Channel: Secure RM Portal (Encrypted)</span>
+</div>
+<!-- Composer Form -->
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Recipient Meta -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Assigned RM Contact</label>
+<div class="h-8 px-space-sm rounded bg-surface-container-low flex items-center justify-between text-on-surface font-body-sm text-body-sm">
+<span>sarah.lin@institutional-bank.com</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Escalation Group CC</label>
+<div class="h-8 px-space-sm rounded bg-surface-container-low flex items-center justify-between text-on-surface font-body-sm text-body-sm">
+<span>compliance-ops-tier1@bank.internal</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">group</span>
+</div>
+</div>
+</div>
+<!-- Email Subject -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold" for="email-subject">Email Subject Field</label>
+<input class="w-full h-8 px-space-sm bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest font-medium" id="email-subject" type="text" value="ACTION REQUIRED: Onboarding Deficiencies for Harbor Crest Holdings Ltd (CASE-2024-8841)"/>
+</div>
+<!-- Email Body Area -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold" for="email-body">Remediation Notice Message Body</label>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">Generated from 4 active checklist items</span>
+</div>
+<textarea class="w-full p-space-sm bg-surface-container-low rounded font-tabular-mono text-tabular-mono text-on-surface focus:outline-none focus:bg-surface-container-lowest resize-none leading-relaxed select-text" id="email-body" rows="12">Dear Sarah,
+
+The institutional KYC review for Harbor Crest Holdings Ltd (CASE-2024-8841) is currently pending resolution of 4 items identified during automated registry reconciliation and evidentiary extraction:
+
+1. [CRITICAL] Registered Office Discrepancy: Declared address (Finsbury Circus) conflicts with Companies House statutory records (128 Cannon Street, EC4N 6AS). Please provide a certified lease agreement, utility bill under 90 days, or Form AD01 confirmation.
+2. [CRITICAL] UBO Identity Document: Mr. Arthur Pendelton (32.0% effective UBO via Atlantic Horizon) submitted a passport that expired on 12 Jan 2024. Please request a valid, certified unexpired passport.
+3. [WARNING] Director Register: Missing updated confirmation of appointment for Mr. Ronald Chen.
+4. [WARNING] Intermediate Vehicle: Stamped Certificate of Incumbency required for Atlantic Horizon Capital Ltd (Cayman Islands).
+
+Please upload these items via the Secure RM Portal within 5 business days to avoid SLA escalation.
+
+Regards,
+Marcus Vance
+Senior KYC Analyst • Financial Crime Compliance</textarea>
+</div>
+<!-- Bottom Action Buttons -->
+<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<button class="h-8 px-space-md rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1.5 font-label-md text-label-md" id="copy-clipboard-btn" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span id="copy-text">Copy to Clipboard</span>
+</button>
+<button class="h-8 px-space-md rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-1.5 font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+<span>Save Template</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-8 px-space-md rounded bg-surface-container-low text-error hover:bg-error-container transition-colors flex items-center gap-1.5 font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+<span>Discard Draft</span>
+</button>
+<button class="h-8 px-space-md rounded bg-primary text-on-primary hover:bg-opacity-90 transition-colors flex items-center gap-1.5 font-label-md text-label-md shadow-sm" id="send-portal-btn" type="button">
+<span class="material-symbols-outlined text-[16px]">send</span>
+<span>Send via Secure Portal</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Case Dossier & Visual Progress (4 cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-lg">
+<!-- Entity Quick Identity Dossier -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Target Entity Profile</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">corporate_fare</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Legal Entity Name</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Harbor Crest Holdings Ltd</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">LEI Identifier</span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface">213800K8K7X6W5V4U321</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Jurisdiction</span>
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">flag</span> United Kingdom (Companies House)
+              </span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">CRN</span>
+<span class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface">09842188</span>
+</div>
+</div>
+<!-- Remediation Progress Breakdown SVG Chart -->
+<div class="pt-space-xs flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold">Documentation Completeness</span>
+<span class="font-tabular-mono text-tabular-mono text-secondary font-bold">58%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 58%;"></div>
+<div class="bg-error h-full" style="width: 25%;"></div>
+<div class="bg-surface-container-high h-full" style="width: 17%;"></div>
+</div>
+<div class="grid grid-cols-3 gap-1 pt-1 text-center font-tabular-mono-sm text-tabular-mono-sm">
+<div class="p-1 rounded bg-surface-container-low">
+<div class="text-on-surface-variant">Verified</div>
+<div class="font-semibold text-secondary">7 Docs</div>
+</div>
+<div class="p-1 rounded bg-surface-container-low">
+<div class="text-on-surface-variant">Blockers</div>
+<div class="font-semibold text-error">2 Docs</div>
+</div>
+<div class="p-1 rounded bg-surface-container-low">
+<div class="text-on-surface-variant">Standard</div>
+<div class="font-semibold text-on-surface">2 Docs</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RM Notification Policy Guardrail -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">shield</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Institutional RM SLA Rules</span>
+</div>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<div class="p-2 rounded bg-surface-container-low flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">schedule</span>
+<div>
+<span class="font-semibold text-on-surface">Tier 1 Turnaround Rule:</span>
+                RM has 5 business days to upload verified replacements before case moves to formal freeze.
+              </div>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">lock</span>
+<div>
+<span class="font-semibold text-on-surface">Chain of Custody:</span>
+                Direct client email transmission is strictly prohibited. Outgoing items must be pushed via the Secure RM Client Portal.
+              </div>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">verified_user</span>
+<div>
+<span class="font-semibold text-on-surface">Notary Requirement:</span>
+                Cayman Incumbency and UK Board Registry extracts must bear wet or validated eIDAS seals.
+              </div>
+</div>
+</div>
+</div>
+<!-- Compliance Officer Sign-off Indicator -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Case Lead Pre-Approval</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Elena Rossi (Principal Officer)</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-secondary font-tabular-mono-sm text-tabular-mono-sm font-semibold">SIGNED 09:14</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Banner Toast (hidden by default) -->
+<div class="fixed bottom-10 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="toast-message">
+<div class="px-4 py-2.5 rounded bg-primary text-on-primary font-body-md text-body-md flex items-center gap-2 shadow-lg">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">check_circle</span>
+<span id="toast-text">Content successfully copied to clipboard</span>
+</div>
+</div>
+</div>
+<script>
+  (function initPunchListInteractions() {
+    const masterCheck = document.getElementById('master-checkbox');
+    const itemChecks = document.querySelectorAll('.punch-item-check');
+    const toggleAllBtn = document.getElementById('toggle-all-btn');
+    const copyBtn = document.getElementById('copy-clipboard-btn');
+    const copyText = document.getElementById('copy-text');
+    const emailBody = document.getElementById('email-body');
+    const sendPortalBtn = document.getElementById('send-portal-btn');
+    const toast = document.getElementById('toast-message');
+    const toastText = document.getElementById('toast-text');
+
+    function showToast(msg) {
+      if (!toast || !toastText) return;
+      toastText.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2600);
+    }
+
+    if (masterCheck) {
+      masterCheck.addEventListener('change', (e) => {
+        const isChecked = e.target.checked;
+        itemChecks.forEach(chk => {
+          chk.checked = isChecked;
+        });
+      });
+    }
+
+    if (toggleAllBtn) {
+      toggleAllBtn.addEventListener('click', () => {
+        const allChecked = Array.from(itemChecks).every(chk => chk.checked);
+        itemChecks.forEach(chk => { chk.checked = !allChecked; });
+        if (masterCheck) masterCheck.checked = !allChecked;
+        toggleAllBtn.textContent = !allChecked ? 'Deselect All' : 'Select All';
+      });
+    }
+
+    if (copyBtn && emailBody) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(emailBody.value).then(() => {
+          copyText.textContent = 'Copied!';
+          showToast('Remediation outreach copied to clipboard');
+          setTimeout(() => {
+            copyText.textContent = 'Copy to Clipboard';
+          }, 2000);
+        }).catch(() => {
+          emailBody.select();
+          document.execCommand('copy');
+          showToast('Copied to clipboard via fallback');
+        });
+      });
+    }
+
+    if (sendPortalBtn) {
+      sendPortalBtn.addEventListener('click', () => {
+        sendPortalBtn.classList.add('opacity-75');
+        sendPortalBtn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span><span>Transmitting...</span>';
+        setTimeout(() => {
+          sendPortalBtn.classList.remove('opacity-75');
+          sendPortalBtn.innerHTML = '<span class="material-symbols-outlined text-[16px]">done_all</span><span>Transmitted to Portal</span>';
+          showToast('Outreach dispatched via Secure RM Portal to Sarah Lin');
+        }, 1200);
+      });
+    }
+  })();
+</script></main></div><footer class="fixed bottom-0 left-0 right-0 h-7 bg-surface-container-lowest z-50 flex items-center justify-between px-gutter-desktop shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-space-xs"><span class="inline-block w-2 h-2 rounded-full bg-secondary"></span><span>Institutional KYC Workbench • Prototype with sample data • Strictly Confidential</span></div><div class="font-tabular-mono-sm text-tabular-mono-sm text-on-surface-variant">Traceability Engine v4.2</div></footer></body></html>
